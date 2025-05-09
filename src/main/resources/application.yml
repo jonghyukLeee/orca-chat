@@ -1,0 +1,58 @@
+spring:
+  application:
+    name: chat
+  webflux:
+    base-path: /chats
+  data:
+    mongodb:
+      host: mongo-chat
+      port: 27017
+      username: root
+      password: ${DB_PASSWORD}
+      database: admin
+      authentication-database: admin
+    redis:
+      repositories:
+        enabled: false
+  kafka:
+    bootstrap-servers: orca-kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: chat
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "com.orca.*"
+    listener:
+      ack-mode: manual_immediate
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /v3/api-docs
+
+server:
+  port: 8050
+
+redis:
+  host: orca-redis
+
+external:
+  services:
+    auths:
+      host: orca-auth
+      port: 8010
+    players:
+      host: orca-player
+      port: 8020
+    clubs:
+      host: orca-club
+      port: 8030
+    matches:
+      host: orca-match
+      port: 8040
