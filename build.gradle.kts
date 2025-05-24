@@ -1,7 +1,7 @@
 plugins {
 	kotlin("jvm") version "1.9.25"
 	kotlin("plugin.spring") version "1.9.25"
-	id("org.springframework.boot") version "3.4.5"
+	id("org.springframework.boot") version "3.3.1"
 	id("io.spring.dependency-management") version "1.1.7"
 }
 
@@ -24,7 +24,11 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-mongodb-reactive")
 	implementation("org.springframework.boot:spring-boot-starter-data-redis-reactive")
 
+	implementation("org.springframework.boot:spring-boot-starter-websocket")
+
 	implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.6.0")
+
+	implementation("org.springframework.boot:spring-boot-starter-websocket")
 
 	implementation("org.springframework.kafka:spring-kafka")
 	implementation("io.projectreactor.kafka:reactor-kafka")
